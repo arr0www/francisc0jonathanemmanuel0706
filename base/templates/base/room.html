@@ -1,0 +1,196 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+.resdesbtn{
+
+  background-color: #71c6dd;
+  border-color: #696d97;
+
+  border-radius: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+}
+.condesbtn{
+
+background-color: #71c6dd;
+border-color: #696d97;
+
+border-radius: 12px;
+padding-left: 5px;
+padding-right: 5px;
+
+}
+</style>
+
+    <main class="profile-page layout layout--2" >
+      <div class="container" >
+        <!-- Room Start -->
+        <div class="room" >
+          <div class="room__top">
+            <div class="room__topLeft">
+              <a href="{%url 'home'%}">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                  <title>arrow-left</title>
+                  <path
+                    d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z"
+                  ></path>
+                </svg>
+              </a>
+              <h3>Home</h3>
+            </div>
+            {% if request.user.is_superuser %}
+            <div class="room__topRight">
+              <!-- {% if user.is_superuser %}
+              {% if room.status == 1 %}
+              <a href="{% url 'deny-book' room.id %}">Deny Reservation</a>
+              {% endif %}
+  
+              {% if room.status == 1 %}
+              <a href="{% url 'confirm-room' room.id %}">Confirm Reservation</a>
+              {% endif %}
+  
+              {% endif %} -->
+
+            </div>
+            {% endif %}
+
+          </div>
+          <div class="room__box scroll">
+            <div class="room__header scroll">
+              <div class="room__info">
+                
+                <h3>Title: {{room.name}}
+                  <p>Author: {{room.author}}</p>
+                  <p>ISBN: {{room.serialnumber}}</p>
+                  <p>Date Published: {{room.date_published}}</p>
+                </h3>
+                <span>{{room.created|timesince}} ago</span>
+              </div>
+              <span class="room__topics">{{room.topic}}</span>
+            </div>
+
+
+
+          </div>
+        </div>
+        <!-- Room End -->
+
+
+                <!-- Mobile Start-->
+
+
+
+                <!-- Mobile End-->
+
+        <!--   Start -->
+
+        <div class="activities">
+
+          <div class="activities__header">
+            <h2>Transactions</h2>
+          </div>
+          <div><p><center>Info:</center></p></div>
+<!-- ############################ -->
+          <div class="activities__box">
+            <div class="activities__boxHeader roomListRoom__header">
+              <a href = "{% url 'confirm-room' room.id %}">
+                  {% for binfo in binfo %}
+                  {% if binfo.room == room.name %}
+                  {% if binfo.bstatus == 1 %}
+
+                  <p>Title: {{binfo.room}}</p>
+                  <p>Borrower: {{binfo.user}}</p>
+                  <p>Request Date: {{binfo.requestdate}}</p>
+                  <p>Return Date: {{binfo.returndate}}</p>
+                  <p>Status: <FONT COLOR = "Yellow">Pending</FONT></p>
+                  <span>{{binfo.created|timesince}} ago</span>
+                  <br>
+                  <br>
+                  <br>
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </a>
+
+
+            </div>
+            <div class="activities__boxHeader roomListRoom__header">
+              <a href = "{% url 'return-book' room.id %}">
+                {% for binfo2 in binfo2 %}
+                {% if binfo2.bstatus == 1 %}
+                {% if binfo2.room == room.name %}
+
+                <p>Title: {{binfo2.room}}</p>
+                <p>Borrower: {{binfo2.user}}</p>
+                <p>Request Date: {{binfo2.requestdate}}</p>
+                <p>Return Date: {{binfo2.returndate}}</p>
+                <p>Status: <FONT COLOR = "Red">Borrowed</FONT></p>
+                <span>{{binfo2.created|timesince}} ago</span>
+                <br>
+                <br>
+                <br>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </a>
+            </div>
+            <div class="activities__boxHeader roomListRoom__header">
+              <a FONT COLOR = "Gray">
+              {% for binfo3 in binfo3 %}
+              {% if binfo3.bstatus == 1 %}
+              {% if binfo3.room == room.name %}
+              <p>Title: {{binfo3.room}}</p>
+              <p>Borrower: {{binfo3.user}}</p>
+              <p>Request Date: {{binfo3.requestdate}}</p>
+              <p>Return Date: {{binfo3.returndate}}</p>
+              <p>Status: <FONT COLOR = "Gray">Returned</FONT></p>
+              <span>{{binfo3.created|timesince}} ago</span>
+              <br>
+              <br>
+              <br>
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+              </a>
+            </div>
+            <div class="activities__boxHeader roomListRoom__header">
+              <a FONT COLOR = "Gray">
+              {% for binfo4 in binfo4 %}
+              {% if binfo4.bstatus == 1 %}
+              {% if binfo4.room == room.name %}
+              <p>Title: {{binfo4.room}}</p>
+              <p>Borrower: {{binfo4.user}}</p>
+              <p>Request Date: {{binfo4.requestdate}}</p>
+              <p>Return Date: {{binfo4.returndate}}</p>
+              <p>Status: <FONT COLOR = "Black">Denied</FONT></p>
+              <span>{{binfo4.created|timesince}} ago</span>
+              <br>
+              <br>
+              <br>
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+              </a>
+            </div>
+
+            <div class="activities__boxContent">
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        
+        
+        <!--  End -->
+      </div>
+    </main>
+    <script src="script.js"></script>
+
+
+    {% endblock content %}

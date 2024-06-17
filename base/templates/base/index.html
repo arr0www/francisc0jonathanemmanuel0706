@@ -1,0 +1,27 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF - 8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" href="{% static 'styles/stylebulok.css' %}" />
+
+    <title>DFCAMCLP Satellite Campus</title>
+  </head>
+  <body>
+    <header id="Text">
+      <h1>Welcome DFCAM Students!</h1>
+      <p>DFCAMCLP Satellite Campus Online Book Reservation</p>
+      <a href="{% url 'login' %}" class="button" onclick = "indexcard()">Login</a>
+      <script>
+        function indexcard(){
+  window.location.href="{% url 'login' %}";
+        }
+      </script>
+    </header> 
+    <section id="section-a"><p>No Copyright Infringement Intended </p>
+      <p id="b">(Contents are not uploaded)</p>
+    </section>
+
+  </body>
+</html>

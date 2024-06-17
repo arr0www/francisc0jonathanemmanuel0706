@@ -1,0 +1,191 @@
+{% load static %}
+
+<div class="activities">
+
+  <div class="activities__header">
+    <h2>Transactions</h2>
+  </div>
+  <div><p><center>Info:</center></p></div>
+<!-- ############################ -->
+  {% if request.user.is_superuser %}
+  <div class="activities__box">
+    <div class="activities__boxHeader roomListRoom__header">
+      <a href = " ">
+          {% for binfo in binfo %}
+          {% if binfo.bstatus == 1 %}
+
+          <p>Title: {{binfo.room}}</p>
+          <p>Borrower: {{binfo.user}}</p>
+          <p>Request Date: {{binfo.requestdate}}</p>
+          <p>Return Date: {{binfo.returndate}}</p>
+          <p>Status: <FONT COLOR = "Yellow">Pending</FONT></p>
+          <span>{{binfo.created|timesince}} ago</span>
+          <br>
+          <br>
+          <br>
+          {% endif %}
+          {% endfor %}
+        </a>
+
+
+    </div>
+    <div class="activities__boxHeader roomListRoom__header">
+      <a href = " ">
+        {% for binfo2 in binfo2 %}
+        {% if binfo2.bstatus == 1 %}
+
+        <p>Title: {{binfo2.room}}</p>
+        <p>Borrower: {{binfo2.user}}</p>
+        <p>Request Date: {{binfo2.requestdate}}</p>
+        <p>Return Date: {{binfo2.returndate}}</p>
+        <p>Status: <FONT COLOR = "Red">Borrowed</FONT></p>
+        <span>{{binfo2.created|timesince}} ago</span>
+        <br>
+        <br>
+        <br>
+
+        {% endif %}
+        {% endfor %}
+    </a>
+    </div>
+    <div class="activities__boxHeader roomListRoom__header">
+      <a FONT COLOR = "Gray">
+        {% for binfo3 in binfo3 %}
+        {% if binfo3.bstatus == 1 %}
+        <p>Title: {{binfo3.room}}</p>
+        <p>Borrower: {{binfo3.user}}</p>
+        <p>Request Date: {{binfo3.requestdate}}</p>
+        <p>Return Date: {{binfo3.returndate}}</p>
+        <p>Status: <FONT COLOR = "Gray">Returned</FONT></p>
+        <span>{{binfo3.created|timesince}} ago</span>
+        <br>
+        <br>
+        <br>
+        {% endif %}
+        {% endfor %}
+        </a>
+    </div>
+    <div class="activities__boxHeader roomListRoom__header">
+      <a FONT COLOR = "Gray">
+      {% for binfo4 in binfo4 %}
+      {% if binfo4.bstatus == 1 %}
+      <p>Title: {{binfo4.room}}</p>
+      <p>Borrower: {{binfo4.user}}</p>
+      <p>Request Date: {{binfo4.requestdate}}</p>
+      <p>Return Date: {{binfo4.returndate}}</p>
+      <p>Status: <FONT COLOR = "Black">Denied</FONT></p>
+      <span>{{binfo4.created|timesince}} ago</span>
+      <br>
+      <br>
+      <br>
+      {% endif %}
+      {% endfor %}
+      </a>
+    </div>
+
+    <div class="activities__boxContent">
+
+    </div>
+
+
+  </div>
+  {% endif %}
+  {% if not user.is_superuser %}
+  
+  <div class="activities__box">
+
+
+    <div class="activities__boxHeader roomListRoom__header">
+      <a href = " ">
+          {% for binfo in binfo %}
+          {% if request.user.name == binfo.user %}
+          {% if binfo.bstatus == 1 %}
+
+          <p>Title: {{binfo.room}}</p>
+          <p>Borrower: {{binfo.user}}</p>
+          <p>Request Date: {{binfo.requestdate}}</p>
+          <p>Return Date: {{binfo.returndate}}</p>
+          <p>Status: <FONT COLOR = "Yellow">Pending</FONT></p>
+          <span>{{binfo.created|timesince}} ago</span>
+          <br>
+          <br>
+          <br>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+        </a>
+
+
+    </div>
+    <div class="activities__boxHeader roomListRoom__header">
+      <a href = " ">
+        {% for binfo2 in binfo2 %}
+        {% if request.user.name == binfo2.user %}
+        {% if binfo2.bstatus == 1 %}
+
+        <p>Title: {{binfo2.room}}</p>
+        <p>Borrower: {{binfo2.user}}</p>
+        <p>Request Date: {{binfo2.requestdate}}</p>
+        <p>Return Date: {{binfo2.returndate}}</p>
+        <p>Status: <FONT COLOR = "Red">Borrowed</FONT></p>
+        <span>{{binfo2.created|timesince}} ago</span>
+        <br>
+        <br>
+        <br>
+
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </a>
+    </div>
+    <div class="activities__boxHeader roomListRoom__header">
+      <a FONT COLOR = "Gray">
+        {% for binfo3 in binfo3 %}
+        {% if request.user.name == binfo3.user %}
+        {% if binfo3.bstatus == 1 %}
+        <p>Title: {{binfo3.room}}</p>
+        <p>Borrower: {{binfo3.user}}</p>
+        <p>Request Date: {{binfo3.requestdate}}</p>
+        <p>Return Date: {{binfo3.returndate}}</p>
+        <p>Status: <FONT COLOR = "Gray">Returned</FONT></p>
+        <span>{{binfo3.created|timesince}} ago</span>
+        <br>
+        <br>
+        <br>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        </a>
+    </div>
+    <div class="activities__boxHeader roomListRoom__header">
+      <a FONT COLOR = "Gray">
+      {% for binfo4 in binfo4 %}
+      {% if request.user.name == binfo4.user %}
+      {% if binfo4.bstatus == 1 %}
+      <p>Title: {{binfo4.room}}</p>
+      <p>Borrower: {{binfo4.user}}</p>
+      <p>Request Date: {{binfo4.requestdate}}</p>
+      <p>Return Date: {{binfo4.returndate}}</p>
+      <p>Status: <FONT COLOR = "Black">Denied</FONT></p>
+      <span>{{binfo4.created|timesince}} ago</span>
+      <br>
+      <br>
+      <br>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      </a>
+    </div>
+
+    <div class="activities__boxContent">
+
+    </div>
+
+
+  </div>
+
+  {% endif %}
+
+
+</div>
+
